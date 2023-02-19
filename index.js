@@ -1,8 +1,9 @@
 require('dotenv').config();
 const Telegraf = require('telegraf');
 const axios = require('axios');
+const mySecret = process.env['TOKEN'];
+const bot = new Telegraf(mySecret);
 
-const bot = new Telegraf(process.env.TOKEN);
 
 bot.command('start', ctx=> {
     sendStartMessage(ctx);
@@ -75,19 +76,23 @@ function help(ctx){
 }    
 
 bot.action('hackinfo', ctx => {
-    let hackMessage = "ABOUT THE HACKATHON \nCASTOR, the latter chapter, will be a 48-hour remarkable event with a vision of upskilling students through events of different technical and entrepreneurial domains, connecting with various tech leaders and inspiring individuals, and providing a platform for a comprehensive exchange of innovation."
+    let hackMessage = "ABOUT THE HACKATHON \nRapid Hacks is a 24-hour online hackathon organized by GDSC IGDTUW, with tracks designed specifically for beginners. No matter if you are still ideating your solution, designing it or have a prototype ready ~ Everyone is invited!"
     
     bot.telegram.sendMessage(ctx.chat.id, hackMessage,
         {
             reply_markup: {
                 inline_keyboard: [
                     [
-                        { text: 'Problem Statements', callback_data: 'ps'}
+                        { text: 'Tracks', callback_data: 'ps'}
                     ],
                     [
                         { text: 'Rules', callback_data: 'rules'},                   
                         { text: 'Mode', callback_data: 'loc'},
                         { text: 'Prizes', callback_data: 'prizes'}
+                        
+                    ],
+                    [
+                        { text: 'Judges and Speakers', callback_data: 'js'}
                     ],
                     [
                         
@@ -146,7 +151,7 @@ bot.action('rules', ctx => {
 
 bot.action('hacktheme', ctx => {
   
-    let hackMessage = "Innovate with purpose - hack for a sustainable and efficient future. \nJoin us by developing a ChatBot."
+    let hackMessage = "The theme for Rapid Hacks is building Sustainable Technology. However, the hackers can also submit projects based on any other theme under the Open Innovation Category."
     
     bot.telegram.sendMessage(ctx.chat.id, hackMessage,
         {
@@ -224,7 +229,23 @@ bot.action('loc', ctx => {
 
 bot.action('prizes', ctx => {
     
-    let hackMessage = "PRIZE POOL - $1,500 \nPARTNERS:\nPolygon $350 \nFilecoin $250 \nReplit $50 \nSolana $850 \n\nYou can also visit the site - https://castor23.netlify.app/#prizes"
+    let hackMessage = "PRIZE POOL : $1,499 \nPARTNERS:\nPolygon $350 \nFilecoin $250 \nReplit $50 \nSolana $850 \n\nDESIGN TRACK WINNER: $0\nIDEATE TRACK WINNER: -$1\nSOLVE TRACK WINNER: $0\nBest All Girls Team: $0 \n\nYou can also visit the site - https://rapidhacks.devfolio.co/prizes"
+    
+    bot.telegram.sendMessage(ctx.chat.id, hackMessage,
+        {
+            reply_markup: {
+                inline_keyboard: [
+                    [
+                        { text: 'Back to INTRO', callback_data: 'start' },                        
+                    ]                    
+                ]
+            }
+        })
+})
+
+bot.action('js', ctx => {
+    
+    let hackMessage = "The pannel of judges include:\n1. Parul Mann(Lead, GDSC IGDTUW) LinkedIn - https://www.linkedin.com/in/parul-mann-577966203 \n2. Tamanna Khaitan(Technical Lead, GDSC IGDTUW) LinkedIn - https://www.linkedin.com/in/tamannakhaitan/ \n3. Anmol Jha(Management Lead, GDSC IGDTUW) LinkedIn - https://www.linkedin.com/in/anmol-jha/"
     
     bot.telegram.sendMessage(ctx.chat.id, hackMessage,
         {
@@ -262,7 +283,7 @@ bot.action('ps', ctx => {
 
 
 bot.hears('2023/2024/2025', ctx => {
-    bot.telegram.sendMessage(ctx.chat.id, 'Bot Development Problem Statements: \n1. Build an Order Booking Bot \n2. Buils a FAQ bot for Student-led Hackathon \n3. Build a Language Leaning Bot \n4. Build a Job Search Bot \n\nBot Development can be done in Python, Javascript but has to be coded.',
+    bot.telegram.sendMessage(ctx.chat.id, 'The hackathon has tracks designed specially for beginners with no-code, low-code and coding tracks: \n1. IDEATE TRACK: The hackers can submit their idea. \n2. DESIGN TRACK: The hackers have to present a design of what their solution would look like. \n3. SOLVE TRACK: The hackers have to present a solution to the problem statement that they have chosen.',
         {
             reply_markup: {
                 inline_keyboard: [
@@ -276,7 +297,7 @@ bot.hears('2023/2024/2025', ctx => {
 })
 
 bot.hears('2026', ctx => {
-    bot.telegram.sendMessage(ctx.chat.id, 'For the 2026 batch, there is a no code track. \n1. [No Code Chrome Extension] Manage your College Life like a Pro \n2. [No Code Web App] create a Web app for Society Recruitments of IGDTUW \n3. [No Code Survey Bot] Build a Survey Bot for Faculty Feedback for IGDTUW Faculty',
+    bot.telegram.sendMessage(ctx.chat.id, 'The hackathon has tracks designed specially for beginners with no-code, low-code and coding tracks: \n1. IDEATE TRACK: The hackers can submit their idea. \n2. DESIGN TRACK: The hackers have to present a design of what their solution would look like. \n3. SOLVE TRACK: The hackers have to present a solution to the problem statement that they have chosen.',
         {
             reply_markup: {
                 inline_keyboard: [
@@ -359,7 +380,7 @@ bot.action('registration', ctx => {
 
 bot.action('req', ctx => {
         let hackMessage = "Requirements for registration: \n1. Name  \n2. Email-Id  \n3. Phone Number - Enter 'phone' \n4. Team name "
-        ctx.reply("To continue the registartion process, enter 'REGISTER NOW'.");
+        ctx.reply("To continue the registartion process, enter 'Register Now'.");
         
         bot.telegram.sendMessage(ctx.chat.id, hackMessage,
             {
@@ -375,7 +396,7 @@ bot.action('req', ctx => {
         })
 
 bot.hears('Register Now', ctx => {
-    ctx.reply('Check out the link below: \nhttps://castor-2023.devfolio.co/');                
+    ctx.reply('Check out the link below: \https://bit.ly/RapidHacks');                
         })
 
 bot.hears('Remove Keyboard', ctx => {
@@ -391,7 +412,7 @@ bot.hears('Remove Keyboard', ctx => {
 
 bot.action('dead', ctx => {
     
-        let hackMessage = 'The registration deadline for this hackthon is 27 Jan 2023, 10PM. Hurry up and register for this opportunity!!!'
+        let hackMessage = 'The registration deadline for this hackthon is 18th Feb 2023, 11:59 PM. Hurry up and register for this opportunity!!!'
         
         bot.telegram.sendMessage(ctx.chat.id, hackMessage,
             {
@@ -413,7 +434,7 @@ bot.hears(/\/setreminder|\/stop/, (ctx) => {
 
   if (/\/setreminder/.test(ctx.update.message.text)) {
     sendInterval = setInterval(() => {
-      ctx.reply('HACKATHON ON 31st Jan,2023!! \nSUBMIT YOUR PROJECT!!!');
+      ctx.reply('HACKATHON ON 18th Feb,2023!! \nSUBMIT YOUR PROJECT!!!');
     }, 600);
   } else if (/\/stop/.test(ctx.update.message.text)) {
     ctx.reply('ALLLLL THE BESTTT!!');
@@ -521,7 +542,7 @@ const requestPhoneKeyboard = {
 
     bot.action('timeline', ctx => {
     
-        let hackMessage = "Registration starts - 9 Jan 2023, 8PM \nRegistration ends 27 Jan 2023, 3PM \nHackathon starts - 28 Jan 2023, 12AM \nHackathon ends - 29 Jan 2023, 10AM \nResults announced 29 Jan 2023 8PM"
+        let hackMessage = "Registration starts - 26 Jan 2023, 7 AM \nRegistration ends 18th Feb 2023, 11:59 PM \nHackathon starts - 18 Feb 2023, 12 PM \nHackathon ends - 19 Feb 2023, 12PM \nResults announced 19 Feb 2023 7 PM"
         
         bot.telegram.sendMessage(ctx.chat.id, hackMessage,
             {
@@ -544,13 +565,13 @@ const requestPhoneKeyboard = {
                 reply_markup: {
                     inline_keyboard: [
                         [
-                            { text: 'Insta', url:'https://www.youtube.com/watch?v=Lt-MY9LQLv0&list=PLX2ojSA27XYhIopdU2RRQIMe7gfwcKL84&index=66&ab_channel=TutorialWeekly' },                        
+                            { text: 'Insta', url:'https://www.instagram.com/gdsc_igdtuw/' },                        
                         ],
                         [
                             { text: 'Phone No: 9823138917', callback_data: 'no' },                        
                         ],
                         [
-                            { text: 'Email-id: cb@igdtuw.ac.in', callback_data: 'id' },                        
+                            { text: 'Email-id: dscigdtuw@gmail.com', callback_data: 'id' },                        
                         ], 
                         [
                             { text: 'Back to INTRO', callback_data: 'start' },                        
