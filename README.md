@@ -34,11 +34,11 @@ NIAX is your one stop destination for any Hackathon! Get all your answers with N
 
 
 ## Presentation 
-Presentation Link: Click [here](https://www.canva.com/design/DAFYmqB8MP4/sNN4ZmKnwWNgrHbfNdlfNA/edit?utm_content=DAFYmqB8MP4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton) to go to our presentation.
+Presentation Link: Click [here](https://www.canva.com/design/DAFa_PsvfiQ/u4o9zpwTafwWzu1VLgH7BQ/edit?utm_content=DAFa_PsvfiQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton) to go to our presentation.
 
 
 ## Deployment
-Click [here]([link](https://web.telegram.org/k/#@shreyaecho_bot)) to go to our Telegram Bot.
+Click [here]([link](https://web.telegram.org/k/#@shreyaecho_bot)) to go to our Telegram Bot. The bot has been deployed on Replit.
 
 ## Video Demo
 Click [here](https://youtu.be/--8j4-3eR_M) to watch our demo video.
